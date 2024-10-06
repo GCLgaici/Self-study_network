@@ -80,7 +80,31 @@
     <footer>
         <p>&copy; 2022 高新学考学习平台</p>
     </footer>
-
+    <script>
+        // 动态生成课程列表
+        var courses = [
+            {
+                name: 'VB程序设计',
+                url: '#'
+            },
+            {
+                name: '局域网组建',
+                url: '#'
+            },
+            {
+                name: '服务器运维',
+                url: '#'
+            }
+        ];
+        var courseList = document.getElementById('course-list');
+        for (var i = 0; i < courses.length; i++) {
+            var course = courses[i];
+            var courseItem = document.createElement('div');
+            courseItem.innerHTML = '<h3><a href="' + course.url + '">' + course.name + '</a></h3>';
+            courseList.appendChild(courseItem);
+        }
+            
+    </script>
 </body>
 
 </html>
