@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>网利宝</h1>
+    <hr>
+    <!-- <h4>银行卡: 0</h4> -->
+    <h4 class="wlb">网利宝余额: 0</h4>
+    <h5>当前利率: 0.36</h5>
+    <h5 class="dcsy">当前收益: 0</h5>
+    <!-- <h4>钱包余额: 0</h4> -->
+    <p>操作：</p>
+    <div>
+        <p>转出/转入金额：</p><input type="text" class="wbk1">
+        <br><br>
+        <p>用作?：</p>
+        <input type="text"  class="wbk2">
+        <br>
+        <input type="button" value="确定">
+    </div>
+    <ul>
+        <l>本金：</l>
+        <l></l>
+        <l></l>
+        <l></l>
+    </ul>
+    <!-- <input type="button" value="确定"> -->
+    <br>
+    
+    <script>
+        // 初始化数据
+        let lilv = 0.36     // 利率
+        let dcsy = 0        // 单次收益
+        
+        // 网利宝余额
+        let wlb = +prompt('请输入初始本金：')
+        let arr = [`初始本金: ${wlb}`]
+        console.log(arr);
+        
+
+
+        // 每秒利率收益
+        let lljs = setInterval(function(){
+            dcsy = (wlb / 10000) * lilv
+            wlb += dcsy
+
+            
+        }, 1000)
+
+        // 刷新界面/数据
+        let sx = setInterval(function(){
+            const wlb_bq = document.querySelector('.wlb')
+            wlb_bq.innerHTML = '网利宝余额: ' + wlb
+
+            const sy_bq = document.querySelector('.dcsy')
+            sy_bq.innerHTML = '当前收益: ' + dcsy
+
+            const ul = document.querySelector('ul')
+            ul.innerHTML = ''
+            for(let i = 0; i< arr.length; i++)
+            {
+                ul.innerHTML += `<li>${arr[i]}</li>`
+                
+            }
+            
+        }, 200)
+
+
+        const an1 = document.querySelector("[type='button']")
+        an1.addEventListener('click', function(){
+            const wbk1 = document.querySelector(".wbk1")
+            const wbk2 = document.querySelector(".wbk2")
+            wlb += +wbk1.value
+            arr.unshift(`${wbk1.value},${wbk2.value}`)
+        })
+    </script>
+</body>
+</html>

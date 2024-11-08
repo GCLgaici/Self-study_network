@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的余额宝</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+        }
+        .header {
+            background-color: #ff6f20;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .back-btn {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            color: white;
+            cursor: pointer;
+        }
+        .balance-container {
+            padding: 20px;
+            text-align: center;
+            background-color: white;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .total-amount {
+            font-size: 36px;
+            color: #ff6f20;
+        }
+        .record-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .record-item {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            background-color: white;
+        }
+        .record-item:last-child {
+            border-bottom: none;
+        }
+        .record-date {
+            color: #888;
+            font-size: 12px;
+        }
+        .record-amount {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <span class="back-btn">&lt; 返回</span>
+        <h1>我的余额宝</h1>
+    </div>
+
+    <div class="balance-container">
+        <div class="total-amount">¥4001.47</div>
+        <div class="cumulative-income">累计收益：¥2.61</div>
+    </div>
+
+    <ul class="record-list">
+        <li class="record-item">
+            <div class="record-date">2024-11-07</div>
+            <div>消费退款 - 抖音电商 -订单编码 6935... <span class="record-amount">+36.80</span></div>
+        </li>
+        <li class="record-item">
+            <div class="record-date">2024-11-06</div>
+            <div>消费 - 抖音电商 -订单编码 6935... <span class="record-amount">-36.80</span></div>
+        </li>
+        <li class="record-item">
+            <div class="record-date">2024-11-05</div>
+            <div>转出到银行卡 <span class="record-amount">-165.00</span></div>
+        </li>
+        <li class="record-item">
+            <div class="record-date">2024-11-04</div>
+            <div>消费 - 【狂欢价】优越者3.5寸移动... <span class="record-amount">-83.00</span></div>
+        </li>
+    </ul>
+
+</body>
+</html>

@@ -1,82 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>余额宝</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f5f7;
+        }
+        .header {
+            background-color: #ff6f20;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+        .back-btn {
+            position: absolute;
+            left: 15px;
+            top: 20px;
+            color: white;
+            cursor: pointer;
+        }
+        .balance-container {
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 10px 15px;
+            border-radius: 8px;
+        }
+        .total-amount {
+            font-size: 36px;
+            color: #333;
+        }
+        .details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .details div {
+            text-align: center;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .button {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .withdraw {
+            background-color: #fff3e0;
+            color: #ff6f20;
+        }
+        .deposit {
+            background-color: #ff6f20;
+            color: white;
+        }
+        .record-input, .record-AT {
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .add-record {
+            margin-top: 10px;
+            text-align: center;
+            cursor: pointer;
+            color: #007bff;
+            font-weight: bold;
+        }
+        /* .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #fff;
+            margin: 10px 15px;
+            border-radius: 8px;
+        } */
+
+        .record-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .record-item {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            background-color: white;
+        }
+        .record-item:last-child {
+            border-bottom: none;
+        }
+        .record-date {
+            color: #888;
+            font-size: 12px;
+        }
+        .record-amount {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h1>网利宝</h1>
-    <hr>
-    <!-- <h4>银行卡: 0</h4> -->
-    <h4 class="wlb">网利宝余额: 0</h4>
-    <h5>当前利率: 0.36</h5>
-    <h5 class="dcsy">当前收益: 0</h5>
-    <!-- <h4>钱包余额: 0</h4> -->
-    <p>操作：</p>
-    <div>
-        <p>转出/转入金额：</p><input type="text" class="wbk1">
-        <br><br>
-        <p>用作?：</p>
-        <input type="text"  class="wbk2">
-        <br>
-        <input type="button" value="确定">
+
+    <div class="header">
+        <span class="back-btn">&lt; 返回</span>
+        <h1>余额宝</h1>
     </div>
-    <ul>
-        <l>本金：</l>
-        <l></l>
-        <l></l>
-        <l></l>
+
+    <div class="balance-container">
+        <div class="total-amount">4,001.47</div>
+        <div class="details">
+            <div>
+                <div>昨日收益(元)</div>
+                <div class="yesterday-earnings">0.15</div>
+            </div>
+            <div>
+                <div>累计收益(元)</div>
+                <div class="total-earnings">2.61</div>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <!-- <div class="button withdraw">转出</div> -->
+            <div class="button deposit" id="deposit">下一天</div>
+        </div>
+
+        <input type="text" class="record-input" placeholder="记录内容...">
+        <input type="text" class="record-AT" placeholder="交易金额...">
+        
+
+        <div class="add-record">添加记录</div>
+    </div>
+
+    <ul class="record-list">
+        <li class="record-item">
+            <div class="record-date">2024-11-07</div>
+            <div>你已开始使用余额宝 <span class="record-amount">+36.80</span></div>
+        </li>
+        <li class="record-item">
+            <div class="record-date">2024-11-06</div>
+            <div>消费 - 抖音电商 -订单编码 6935... <span class="record-amount">-36.80</span></div>
+        </li>
     </ul>
-    <!-- <input type="button" value="确定"> -->
-    <br>
-    
     <script>
-        // 初始化数据
-        let lilv = 0.36     // 利率
-        let dcsy = 0        // 单次收益
-        
-        // 网利宝余额
-        let wlb = +prompt('请输入初始本金：')
-        let arr = [`初始本金a: ${wlb}`]
-        console.log(arr);
-        
+        // 初始化数据   
+        let annualRate = 0.34   // 万份收益率
+        let balance = 4001.4766   // 余额
+        let totalEarnings = 0   // 累计收益
+        let yesterdayEarnings = 0   // 昨日收益
+        let days = 1    // 天数
+        let arr = [`
+                        <div class="record-date">2024-11-07</div>
+                        <div>你已开始使用余额宝 <span class="record-amount">+36.80</span></div>
+                    `]   // 记录列表
 
 
-        // 每秒利率收益
-        let lljs = setInterval(function(){
-            dcsy = (wlb / 10000) * lilv
-            wlb += dcsy
-
+        // 添加记录点击事件
+        document.querySelector('.add-record').addEventListener('click', function() {
+            // 获取输入框的值
+            let inputValue = document.querySelector('.record-input').value
+            let ATValue = document.querySelector('.record-AT').value
             
-        }, 1000)
+            const kj_jlnr = document.querySelector(".record-input")
+            const kj_jyje = document.querySelector(".record-AT")
+            balance += +kj_jyje.value
+
+            fh = ''
+            if(kj_jyje.value >= 0)
+            {
+                fh = "+"
+            }
+            arr.unshift(`
+                    <div class="record-date">天数：${days}</div>
+                    <div>${kj_jlnr.value} <span class="record-amount">${fh}${+kj_jyje.value}</span></div>
+            `)
+
+        });
+
+        // 下一天点击事件
+        document.querySelector('#deposit').addEventListener('click', function() {
+            // 计算收益
+            yesterdayEarnings = (balance / 10000) * annualRate
+            balance += yesterdayEarnings
+            totalEarnings += yesterdayEarnings
+            days += 1
+            
+            
+        });
 
         // 刷新界面/数据
         let sx = setInterval(function(){
-            const wlb_bq = document.querySelector('.wlb')
-            wlb_bq.innerHTML = '网利宝余额: ' + wlb
+            // 
+            const kj_ye = document.querySelector('.total-amount')
+            kj_ye.innerHTML =  balance.toFixed(2)  // 刷新显示余额
 
-            const sy_bq = document.querySelector('.dcsy')
-            sy_bq.innerHTML = '当前收益: ' + dcsy
+            const kj_zzsy = document.querySelector('.yesterday-earnings')
+            kj_zzsy.innerHTML =  yesterdayEarnings.toFixed(2)  // 刷新昨日收益
 
-            const ul = document.querySelector('ul')
+            const kj_lzsy = document.querySelector('.total-earnings')
+            kj_lzsy.innerHTML =  totalEarnings.toFixed(2)  // 刷新累计收益
+
+
+            // 显示列表
+            const ul = document.querySelector('.record-list')
             ul.innerHTML = ''
             for(let i = 0; i< arr.length; i++)
             {
-                ul.innerHTML += `<li>${arr[i]}</li>`
-                
+                ul.innerHTML += `
+                    <li class="record-item">
+                        ${arr[i]}
+                    </li>
+                `
             }
-            
         }, 200)
 
 
-        const an1 = document.querySelector("[type='button']")
-        an1.addEventListener('click', function(){
-            const wbk1 = document.querySelector(".wbk1")
-            const wbk2 = document.querySelector(".wbk2")
-            wlb += +wbk1.value
-            arr.unshift(`${wbk1.value},${wbk2.value}`)
-        })
     </script>
 </body>
 </html>

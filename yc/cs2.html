@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>余额宝</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f5f7;
+        }
+        .header {
+            background-color: #ff6f20;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+        .back-btn {
+            position: absolute;
+            left: 15px;
+            top: 20px;
+            color: white;
+            cursor: pointer;
+        }
+        .balance-container {
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 10px 15px;
+            border-radius: 8px;
+        }
+        .total-amount {
+            font-size: 36px;
+            color: #333;
+        }
+        .details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .details div {
+            text-align: center;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .button {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .withdraw {
+            background-color: #fff3e0;
+            color: #ff6f20;
+        }
+        .deposit {
+            background-color: #ff6f20;
+            color: white;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #fff;
+            margin: 10px 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <span class="back-btn">&lt; 返回</span>
+        <h1>余额宝</h1>
+    </div>
+
+    <div class="balance-container">
+        <div class="total-amount">4,001.47</div>
+        <div class="details">
+            <div>
+                <div>昨日收益(元)</div>
+                <div>0.15</div>
+            </div>
+            <div>
+                <div>累计收益(元)</div>
+                <div>2.61</div>
+            </div>
+        </div>
+        <div class="buttons">
+            <div class="button withdraw">转出</div>
+            <div class="button deposit">转入</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>定时转入</div>
+        <div>稳健理财</div>
+    </div>
+
+</body>
+</html>
