@@ -1,19 +1,10 @@
-<main>
-    <div class="button-container">
-        <a href="download1.zip" class="download-button">下载按钮 1</a>
-        <a href="download2.zip" class="download-button">下载按钮 2</a>
-        <a href="download3.zip" class="download-button">下载按钮 3</a>
-    </div>
-</main>
-
-<style>
     /* 横向排列按钮容器 */
     .button-container {
         display: flex;
         flex-direction: row; /* 横向排列 */
         align-items: center; /* 垂直居中 */
         justify-content: center; /* 水平居中 */
-        height: 100vh; /* 使容器占据整个视口高度 */
+        height: 50vh; 使容器占据整个视口高度
     }
 
     /* 下载按钮样式 */
@@ -32,4 +23,3 @@
     .download-button:hover {
         background-color: #218838; /* 悬停时背景色 */
     }
-</style>
